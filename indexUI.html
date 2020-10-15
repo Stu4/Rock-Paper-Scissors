@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cock Battenberg 1958 Oldsmobile - The Classic Game </title>
+  <meta charset="UTF-8"/>
+  <title>Cock, Battenberg, 1958 Oldsmobile</title>
+  <link href="Images/favicon-16x16.png" rel="shortcut icon">
+  <link href='styleUI.css' rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Cock, Battenberg or 1958 Oldsmobile?</h1>
+    </header>
+        <h3 id="description">Make a selection!</h3>
+    <div id="choicesContainer">
+        <div id="game">
+            <button class="buttons" id="cock">
+            <img src="Images/Cock.png" alt="Cockerel">
+            </button>
+            <button class="buttons" id="battenberg">
+            <img src="Images/Battenberg.PNG" alt="Battenberg">
+            </button>
+            <button class="buttons" id="oldsmobile">
+            <img src="Images/1958Oldsmobile.png" alt="1958 Oldsmobile">
+            </button>
+    </div>
+    <div>
+        <p id="rules">First to 5 wins!</p>
+    </div>
+    <div class="players">
+    <p id="player">Player</p>
+    <p id="computer">Computer</p>
+    </div>
+    <div class="scoreboard">
+        <span id="player-score">0</span>
+         - 
+        <span id="computer-score">0</span>
+    </div>
+    <div id="play-again">
+        <button>Play Again?</button>
+    </div>
+</div>
+  <script>
+
+    // Game Start Conditions
+
+    let playerScore = 0;
+    let computerScore = 0;
+    let roundCount = 0;
+    let gameEnded = false;
+
+    // Definition of querySelectors
+
+    const description = document.querySelector("#description");
+    const playAgain = document.querySelector("#play-again");
+    const rules = document.querySelector("#rules");
+    const scoreboard = document.querySelector(".scoreboard");
+    const playerPoints = document.querySelector("#player-score");
+    const computerPoints = document.querySelector("#computer-score");
+
+    // Code for Play Again Button
+    playAgain.addEventListener("click", () => {
+        playerScore = 0;
+        computerScore = 0;
+        playerPoints.textContent = playerScore;
+        computerPoints.textContent = computerScore;
+        rules.textContent = "First to 5 Wins!"
+    })
+
+    // Assignment of querySelector to choices images.
+
+    let playerSelection;
+
+    const cock = document.getElementById("cock");
+    const battenberg = document.getElementById("battenberg");
+    const oldsmobile = document.getElementById("oldsmobile");
+
+    // Event Listeners for buttons clicks of choices
+
+    cock.addEventListener("click", () => {
+        playerSelection = "cock";
+        playRound();
+    })
+
+    battenberg.addEventListener("click", () => {
+        playerSelection = "battenberg";
+        playRound();
+    })
+
+    oldsmobile.addEventListener("click", () => {
+        playerSelection = "oldsmobile";  
+        playRound();
+    })
+
+    function playRound() {
+
+          // Random generation of Computer Option
+    function computerPlay() {
+        let computerMoves = ["cock", "battenberg", "oldsmobile"];
+        computerChoice = computerMoves[Math.floor(Math.random() * computerMoves.length)];
+        return computerChoice;
+    }
+      
+    let computerSelection = computerPlay();
+
+// Responses for all possible game outcomes
+    // Add 1 for Player & Computer round wins
+
+        if (playerSelection == "cock" && computerSelection == "oldsmobile") {
+            rules.textContent = "You Lose! 1958 Oldsmobile beats Cock";
+            computerScore++
+
+    }   else if (playerSelection == "cock" && computerSelection == "battenberg") {
+            rules.textContent = "You Win! Cock beats Battenberg";
+            playerScore++
+
+    }   else if (playerSelection == "battenberg" && computerSelection == "battenberg") {
+            rules.textContent = "Draw! You both chose Battenberg";
+        
+    }   else if (playerSelection == "battenberg" && computerSelection == "cock") {
+            rules.textContent = "You Lose! Cock beats Battenberg";
+            computerScore++
+
+    }   else if (playerSelection == "battenberg" && computerSelection == "oldsmobile") {
+            rules.textContent = "You Win! Battenberg beats 1958 Oldsmobile";
+            playerScore++
+
+    }   else if (playerSelection == "oldsmobile" && computerSelection == "oldsmobile") {
+            rules.textContent = "Draw! You both chose 1958 Oldsmobile";
+
+    }   else if (playerSelection == "oldsmobile" && computerSelection == "cock") {
+            rules.textContent = "You Win! 1958 Oldsmobile beats Cock";
+            playerScore++
+
+    }   else if (playerSelection == "oldsmobile" && computerSelection == "battenberg") {
+            rules.textContent = "You Lose! Battenberg beats 1958 Oldsmobile";
+            computerScore++
+
+    }   else if (playerSelection == "cock" && computerSelection == "cock") {
+            rules.textContent = "Draw! You both chose Cock"; 
+            
+    
+    }   
+    playerPoints.textContent = playerScore;
+    computerPoints.textContent = computerScore;
+    
+    
+    if (playerScore === 5 || computerScore === 5){
+        gameEnded = true;
+        let winner;
+        if (playerScore > computerScore) {
+            rules.innerHTML = "<b> You Win! Well Done you absolutely smashed it. </b>";
+            
+        } else if (computerScore > playerScore) {
+            rules.innerHTML = "<b> You Lose! That really is unfortunate. </b>";  
+            
+        }
+}
+    }
+    
+
+  </script>
+</body>
+</html>

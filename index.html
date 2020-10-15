@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+  <title>Cock, Battenberg, 1958 Oldsmobile</title>
+  <link href='style.css' rel="stylesheet">
+</head>
+<body>
+  <script>
 
+    // Random generation of Computer Option
+    function computerPlay() {
+        let computerMoves = ["cock", "battenberg", "1958 oldsmobile"];
+        computerSelection = computerMoves[Math.floor(Math.random() * computerMoves.length)];
+        return computerSelection;
+    }
+    
+    function playerPlay() {
+    // Player Prompt to select Option, including player & computer scores
+        playerSelection = window.prompt('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + '\n\nLets play five rounds!' + '\n\nCock, Battenberg or 1958 Oldsmobile? Choose Wisely');
+    // Conversion to lowercase to remove case sensitivity
+        playerSelection = playerSelection.toLowerCase();
+    // Close prompt window if a valid selection is made
+    if (playerSelection === "cock" || playerSelection === "battenberg" || playerSelection ===  "1958 oldsmobile") {
+            return playerSelection;
+        }
+            // Prompt to enter valid word if invalid word entered
+        
+            alert("Please enter a valid word.");
+        }
+    
+
+    // Responses for all possible game outcomes
+    // Add 1 for Player & Computer round wins
+    function playRound(playerSelection, computerSelection) {
+        if (playerSelection == "cock" && computerSelection == "1958 oldsmobile") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nYou Lose! 1958 Oldsmobile beats Cock") ;
+        return computerScore++
+
+    }   else if (playerSelection == "cock" && computerSelection == "battenberg") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nYou Win! Cock beats Battenberg") ;
+        return playerScore++
+
+    }   else if (playerSelection == "battenberg" && computerSelection == "battenberg") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nDraw! You both chose Battenberg") ;
+
+    }   else if (playerSelection == "battenberg" && computerSelection == "cock") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nYou Lose! Cock beats Battenberg") ;
+        return computerScore++
+
+    }   else if (playerSelection == "battenberg" && computerSelection == "1958 oldsmobile") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nYou Win! Battenberg beats 1958 Oldsmobile") ;
+        return playerScore++
+
+    }   else if (playerSelection == "1958 oldsmobile" && computerSelection == "1958 oldsmobile") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nDraw! You both chose 1958 Oldsmobile") ;
+
+    }   else if (playerSelection == "1958 oldsmobile" && computerSelection == "cock") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nYou Win! 1958 Oldsmobile beats Cock") ;
+        return playerScore++
+
+    }   else if (playerSelection == "1958 oldsmobile" && computerSelection == "battenberg") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nYou Lose! Battenberg beats 1958 Oldsmobile") ;
+        return computerScore++
+
+    }   else if (playerSelection == "cock" && computerSelection == "cock") {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + "\n\nDraw! You both chose Cock") ; 
+    
+    }   else {
+        alert ('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore))
+    }
+    }
+
+    let computerSelection;
+    let playerSelection;
+    let playerScore;
+    let computerScore;
+
+    // Function for a 5 round game
+    function game() {
+        // Initial Scores set
+        playerScore = 0;
+        computerScore = 0;
+
+        // Loop function to play 5 Rounds
+        for(let i = 0; i < 5; i++) {
+            computerPlay();
+            playerPlay();
+            playRound(playerSelection, computerSelection);
+        }
+
+        // Message displayed after playing 5 rounds
+        if (playerScore > computerScore) {
+            alert ("You Win! Well done you absolutely smashed it." + '\n\nPlayer Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + '\n\nPress \'OK\' to play again');
+        } else if (playerScore < computerScore) {
+            alert ("You Lose! That really is unfortunate." + '\n\nPlayer Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + '\n\nPress \'OK\' to play again');
+        } else {
+            alert ("It's a Draw" + '\n\nPlayer Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + '\n\nPress \'OK\' to play again');
+        }
+        console.log(game());
+    }
+
+    game();
+
+  </script>
+</body>
+</html>
